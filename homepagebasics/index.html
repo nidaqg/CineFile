@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Movie DataBase</title>
+
+        <!--link css files-->
+        <link rel="stylesheet" href="reset.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    </head>
+
+    <body>
+        <header class="w3-container w3-black w3-center">
+            <h1>My Movie DataBase</h1>
+            <section class="w3-bar w3-black">
+                <a href="#" class="w3-bar-item w3-button">Home</a>
+                <a href="#" class="w3-bar-item w3-button w3-hide-small">Watch List</a>
+                <a href="#" class="w3-bar-item w3-button w3-hide-small">Movies Seen</a>
+                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
+            </section>
+            <section id="demo" class="w3-bar-block w3-red w3-hide w3-hide-large w3-hide-medium">
+                <a href="#" class="w3-bar-item w3-button">Watch List</a>
+                <a href="#" class="w3-bar-item w3-button">Movies Seen</a>
+            </section>  
+        </header>
+
+        <main class="w3-row-padding w3-margin-top">
+            <section class="w3-col m4">
+                <section class="w3-card w3-light-blue w3-padding-small">
+                    <form class="w3-container w3-margin-top">
+                        <label class="w3-text-black"><b>Enter Movie Name</b></label>
+                        <input class="w3-input w3-border w3-light-grey w3-margin-bottom" type="text">
+
+                        <label class="w3-text-black"><b>Enter Actor Name</b></label>
+                       <input class="w3-input w3-border w3-light-grey w3-margin-bottom" type="text">
+
+                       <select class="w3-select w3-margin-bottom" name="option">
+                        <option value="" disabled selected>Choose Genre</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                      </select>
+
+                      <select class="w3-select w3-margin-bottom" name="option">
+                        <option value="" disabled selected>Choose Time Period</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                      </select>
+                      </form>
+
+                      <section class="w3-bar w3-center w3-margin-bottom">
+                        <button class="w3-button w3-black">Submit</button>
+                        <button class="w3-button w3-black">Reset</button>
+                      </section>
+
+                      <section class="w3-card w3-padding-small w3-white w3-margin-bottom w3-margin-right w3-margin-left">
+                          <h2>Search History</h2>
+                          <p>leo vel orci porta non pulvinar neque laoreet suspendisse interdum consectetur libero id faucibus nisl tincidunt eget nullam non nisi est sit amet facilisis magna etiam tempor orci eu lobortis elementum nibh tellus molestie nunc non blandit massa enim nec dui nunc mattis enim ut tellus elementum sagittis vitae et leo duis ut diam quam nulla porttitor massa id neque</p>
+                      </section>
+
+                </section>
+            </section>
+
+            <section class="w3-col m8">
+                <section class="w3-card w3-light-blue w3-padding-small">
+                    <h1 class="w3-center">Results</h1>
+
+
+                    <div class="w3-panel w3-white w3-border">
+                        <h3>Movie 1</h3>
+                        <p>vel pharetra vel turpis nunc eget lorem dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida neque convallis a cras semper auctor neque vitae tempus quam pellentesque nec nam</p>
+                      </div>
+                      
+                      <div class="w3-panel w3-white w3-border">
+                        <h3>Movie 2</h3>
+                        <p>vel pharetra vel turpis nunc eget lorem dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida neque convallis a cras semper auctor neque vitae tempus quam pellentesque nec nam</p>
+                      </div>
+                      <div class="w3-panel w3-white w3-border">
+                        <h3>Movie 3</h3>
+                        <p>vel pharetra vel turpis nunc eget lorem dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida neque convallis a cras semper auctor neque vitae tempus quam pellentesque nec nam</p>
+                      </div>
+                      
+                      <div class="w3-panel w3-white w3-border">
+                        <h3>Movie 4</h3>
+                        <p>vel pharetra vel turpis nunc eget lorem dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida neque convallis a cras semper auctor neque vitae tempus quam pellentesque nec nam</p>
+                      </div>
+                
+               </section>
+
+            </section>
+        </main>
+    </body>
+</html>
