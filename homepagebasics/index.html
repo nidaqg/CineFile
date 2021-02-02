@@ -6,7 +6,7 @@
         <title>My Movie DataBase</title>
 
         <!--link css files-->
-        <link rel="stylesheet" href="reset.css">
+        <!--<link rel="stylesheet" href="reset.css"> -->
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     </head>
 
@@ -30,7 +30,7 @@
                 <section class="w3-card w3-light-blue w3-padding-small">
                     <form class="w3-container w3-margin-top">
                         <label class="w3-text-black"><b>Enter Movie Name</b></label>
-                        <input class="w3-input w3-border w3-light-grey w3-margin-bottom" type="text">
+                        <input class="w3-input w3-border w3-light-grey w3-margin-bottom" id="searchMovie" type="text">
 
                         <label class="w3-text-black"><b>Enter Actor Name</b></label>
                        <input class="w3-input w3-border w3-light-grey w3-margin-bottom" type="text">
@@ -51,8 +51,8 @@
                       </form>
 
                       <section class="w3-bar w3-center w3-margin-bottom">
-                        <button class="w3-button w3-black">Submit</button>
-                        <button class="w3-button w3-black">Reset</button>
+                        <button class="w3-button w3-black" id="submitButton">Submit</button>
+                        <button class="w3-button w3-black" id="resetButton">Reset</button>
                       </section>
 
                       <section class="w3-card w3-padding-small w3-white w3-margin-bottom w3-margin-right w3-margin-left">
@@ -91,5 +91,7 @@
 
             </section>
         </main>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="script.js"></script>
     </body>
 </html>
