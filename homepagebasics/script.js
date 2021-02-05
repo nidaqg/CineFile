@@ -1,27 +1,46 @@
 
 $(document).ready(function(){
+
 //click event for 'search by movie' button
    $("#movieSubmit").click(function (event) {
        event.preventDefault(event)
+       $("#errorMessage").empty()
+       $("#myResults").removeClass("hidden");
+      //get input value and declare as variable
        var searchedMovie = $("#searchMovie").val()
        getMovieData(searchedMovie)
    })
+
 //click event for 'search by actor' button
    $("#actorSubmit").click(function (event) {
      event.preventDefault(event)
+     $("#errorMessage").empty()
+     $("#myResults").removeClass("hidden");
+    //get input value and declare as variable
      var searchedActor = $("#searchActor").val()
      getActorData(searchedActor)
    })
+
    //click event for 'search by genre and year' button
    $("#genreSubmit").click(function (event) {
     event.preventDefault(event)
-    //used genre id as 'value' in html so can search using that
+    $("#errorMessage").empty()
+    $("#myResults").removeClass("hidden");
+    //get input values and declare as variables
     var searchedgenre = $("#genreDropDown").val()
-
     var searchedyear = $("#searchYear").val()
-    //function to generate movie data by genre and/or year
     getGenreYearData(searchedgenre, searchedyear)
+
   })
+   //click event for 'reset' button. Resets all possible displays to revert to empty screen
+   $("#resetButton").click (function (event) {
+     event.preventDefault(event)
+     $('#searchForm').trigger("reset");
+     $("#generatedResults").empty();
+     $("#myResults").removeClass("hidden");
+     $("#errorMessage").empty();
+
+   })
 
 })
 
@@ -42,18 +61,25 @@ function getMovieData(searchedMovie) {
           console.log(data.results[0].title);
           console.log(data)
           $("#generatedResults").empty()
+          $('#searchForm').trigger("reset");
+          //call function to display results on the webpage
           displayMovies (data, searchedMovie)
 
         })
-        } else {
-          //placeholder alert, will replace with on page error message later
-          alert("No data found")
-        }   
+        }  
 })
 
 //function to display movie data on the page within dynamically created elements
 var displayMovies = function (data, searchedMovie){
   console.log(searchedMovie)
+
+  //if statement to check if array of results retrieved from API is empty or not. If empty, display error msg
+  if (data.results.length === 0) {
+    $('#searchForm').trigger("reset");
+    $("#generatedResults").empty();
+    $("#myResults").addClass("hidden");
+    $("#errorMessage").text("It appears there is no data matching that search term. Please try again!").addClass("errorMsg")
+  } else{
 
   for (i=0; i<6; i++) {
     var movieName = $("<h2>");
@@ -63,9 +89,7 @@ var displayMovies = function (data, searchedMovie){
     var movieRating = $("<p>");
 
     movieName.text(data.results[i].title)
-
     movieDate.text((data.results[i].release_date).substring(0,4))
-
     movieSynopsis.text(data.results[i].overview);
 
     posterId = data.results[i].poster_path
@@ -89,7 +113,7 @@ var displayMovies = function (data, searchedMovie){
 
     $("#generatedResults").append(movieInfo)
   }
-}
+} }
 }
 
 //function to retrieve movie data from 'search by actor' button
@@ -106,18 +130,24 @@ function getActorData(searchedActor) {
     if (response.ok) {
       response.json()
       .then (function(data) {
-        console.log(data.results[0].id);
         console.log(data)
+        //call function to retrieve results using actor id
         movieCredits(data)
       })
-      } else {
-        //placeholder alert, will replace with on page error message later
-        alert("No data found")
       }   
 })
  
 //create another fetch function to get movies data based on actor ID that we got from getActorData function
 var movieCredits = function (data) {
+
+  //if statement to check if array of results retrieved from API is empty or not. If empty, shoe error msg.
+  if (data.results.length === 0) {
+    $('#searchForm').trigger("reset");
+    $("#generatedResults").empty();
+    $("#myResults").addClass("hidden");
+    $("#errorMessage").text("It appears there is no data for that Actor name. Please try again!").addClass("errorMsg")
+  } else {
+
   var actorID = data.results[0].id
   var newUrl = "https://api.themoviedb.org/3/person/" + actorID + "/movie_credits?api_key=a5db0bdde47c11be5caeeea00fac18c3&language=en-US"
   fetch(newUrl)  
@@ -126,54 +156,53 @@ var movieCredits = function (data) {
       response.json()
       .then (function (data) {
         $("#generatedResults").empty()
+        $('#searchForm').trigger("reset");
+        //call function to display results on page
         displayActor(data)
         }) 
-      }
+      } 
 })
 }
 
 //function to display movie data with the specified actor on the webpage
 function displayActor (data) {
-            console.log(data)
-            for (i=0; i<6; i++) {
-              var movieName = $("<h2>");
-              var movieDate = $("<h3>");
-              var movieSynopsis = $("<p>");
-              var moviePoster = $("<img>");
-              var movieRating = $("<p>");
+    console.log(data)
             
-              movieName.text(data.cast[i].title)
+     for (i=0; i<6; i++) {
+        var movieName = $("<h2>");
+        var movieDate = $("<h3>");
+        var movieSynopsis = $("<p>");
+        var moviePoster = $("<img>");
+        var movieRating = $("<p>");
             
-              movieDate.text((data.cast[i].release_date).substring(0,4))
+        movieName.text(data.cast[i].title)
+        movieDate.text((data.cast[i].release_date).substring(0,4))
+        movieSynopsis.text(data.cast[i].overview);
             
-              movieSynopsis.text(data.cast[i].overview);
+        posterId = data.cast[i].poster_path
+        moviePoster.attr("src", "https://image.tmdb.org/t/p/w154"+ posterId)
             
-              posterId = data.cast[i].poster_path
-              moviePoster.attr("src", "https://image.tmdb.org/t/p/w154"+ posterId)
+        movieRating.text("Rating: " + data.cast[i].vote_average)
             
-              movieRating.text("Rating: " + data.cast[i].vote_average)
-            
-              //dynamically create the card/panel to hold results
-              var movieInfo = $("<div>").addClass("w3-panel w3-black w3-border")
-              var posterColumn = $("<div>").addClass("w3-col l4 w3-center")
-              var infoColumn = $("<div>").addClass("w3-col l8")
-              var posterCard = $("<div>").addClass("w3-card w3-white w3-padding w3-margin w3-center")
-              var infoCard = $("<div>").addClass("w3-card w3-white w3-padding-small w3-margin")
+        //dynamically create the card/panel to hold results
+        var movieInfo = $("<div>").addClass("w3-panel w3-black w3-border")
+        var posterColumn = $("<div>").addClass("w3-col l4 w3-center")
+        var infoColumn = $("<div>").addClass("w3-col l8")
+        var posterCard = $("<div>").addClass("w3-card w3-white w3-padding w3-margin w3-center")
+        var infoCard = $("<div>").addClass("w3-card w3-white w3-padding-small w3-margin")
               
-              posterCard.append(moviePoster)
-              infoCard.append(movieName, movieDate, movieRating, movieSynopsis)
+        posterCard.append(moviePoster)
+        infoCard.append(movieName, movieDate, movieRating, movieSynopsis)
             
-              posterColumn.append(posterCard)
-              infoColumn.append(infoCard)
-              movieInfo.append(posterColumn, infoColumn)
+        posterColumn.append(posterCard)
+        infoColumn.append(infoCard)
+        movieInfo.append(posterColumn, infoColumn)
             
-              $("#generatedResults").append(movieInfo)
-            }
+       $("#generatedResults").append(movieInfo)
+      }
 
 }
-}
-
-
+}}
 
 
 //function to retrieve movie data from 'search by genre and year' button
@@ -183,6 +212,7 @@ function getGenreYearData (searchedgenre, searchedyear) {
   var apiKey = "a5db0bdde47c11be5caeeea00fac18c3"
   var genreQuery = "&with_genres="+searchedgenre
   var yearQuery = "&primary_release_year="+ searchedyear
+
   console.log(searchedyear)
   console.log(searchedgenre)
   //if statement to check if genre or year or both options have been chosen
@@ -203,15 +233,22 @@ function getGenreYearData (searchedgenre, searchedyear) {
       .then (function(data) {
         console.log(data)
         $("#generatedResults").empty()
+        $('#searchForm').trigger("reset");
+        //call function to display results to page
         displayGenreYear(data)
       })
-      } else {
-        //placeholder alert, will replace with on page error message later
-        alert("No data found")
-      }   
+      } 
 })
 
 var displayGenreYear = function (data){
+  
+  //if statement to check if array of results retrieved from API is empty or not. If empty, show error msg
+  if (data.results.length === 0) {
+    $('#searchForm').trigger("reset");
+    $("#generatedResults").empty();
+    $("#myResults").addClass("hidden");
+    $("#errorMessage").text("It appears there is no data for that year, please try again!").addClass("errorMsg")
+  } else {
 
   for (i=0; i<6; i++) {
     var movieName = $("<h2>");
@@ -221,9 +258,7 @@ var displayGenreYear = function (data){
     var movieRating = $("<p>");
   
     movieName.text(data.results[i].title)
-  
     movieDate.text((data.results[i].release_date).substring(0,4))
-  
     movieSynopsis.text(data.results[i].overview);
   
     posterId = data.results[i].poster_path
@@ -248,6 +283,6 @@ var displayGenreYear = function (data){
     $("#generatedResults").append(movieInfo)
   }
   }
-
+}
 
 }
