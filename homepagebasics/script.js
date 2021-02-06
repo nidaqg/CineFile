@@ -107,7 +107,7 @@ function getMovieData(searchedMovie) {
       $("#errorMessage").text("It appears there is no data matching that search term. Please try again!").addClass("errorMsg")
     } else {
 
-      for (i = 0; i < 6; i++) {
+      for (i = 0; i < data.results.length; i++) {
         var movieName = $("<h2>");
         var movieDate = $("<h3>");
         var movieSynopsis = $("<p>");
@@ -125,6 +125,7 @@ function getMovieData(searchedMovie) {
 
         //dynamically create the card/panel to hold results
         var movieInfo = $("<div>").addClass("w3-panel w3-black w3-border")
+        movieInfo.val(i);
         var posterColumn = $("<div>").addClass("w3-col l4 w3-center")
         var infoColumn = $("<div>").addClass("w3-col l8")
         var posterCard = $("<div>").addClass("w3-card w3-white w3-padding w3-margin w3-center")
@@ -142,6 +143,7 @@ function getMovieData(searchedMovie) {
       //click event to go to movie details page and store movie info in local storage
       $(".w3-panel").click(function () {
         let selected = this.value;
+        console.log(selected);
         localStorage.setItem("movieClicked", JSON.stringify(data.results[selected]))
         window.location.href = "movie-detail.html";
       });
@@ -201,7 +203,7 @@ function getActorData(searchedActor) {
     function displayActor(data) {
       console.log(data)
 
-      for (i = 0; i < 6; i++) {
+      for (i = 0; i < data.results.length; i++) {
         var movieName = $("<h2>");
         var movieDate = $("<h3>");
         var movieSynopsis = $("<p>");
@@ -219,6 +221,7 @@ function getActorData(searchedActor) {
 
         //dynamically create the card/panel to hold results
         var movieInfo = $("<div>").addClass("w3-panel w3-black w3-border")
+        movieInfo.val(i);
         var posterColumn = $("<div>").addClass("w3-col l4 w3-center")
         var infoColumn = $("<div>").addClass("w3-col l8")
         var posterCard = $("<div>").addClass("w3-card w3-white w3-padding w3-margin w3-center")
@@ -233,12 +236,13 @@ function getActorData(searchedActor) {
 
         $("#generatedResults").append(movieInfo)
       }
-      //click event to go to movie details page and store movie info in local storage
-      $(".w3-panel").click(function () {
-        let selected = this.value;
-        localStorage.setItem("movieClicked", JSON.stringify(data.results[selected]))
-        window.location.href = "movie-detail.html";
-      });
+        //click event to go to movie details page and store movie info in local storage
+        $(".w3-panel").click(function () {
+          let selected = this.value;
+          console.log(selected);
+          localStorage.setItem("movieClicked", JSON.stringify(data.results[selected]))
+          window.location.href = "movie-detail.html";
+        });
     }
   }
 }
@@ -289,7 +293,7 @@ function getGenreYearData(searchedgenre, searchedyear) {
       $("#errorMessage").text("It appears there is no data for that year, please try again!").addClass("errorMsg")
     } else {
 
-      for (i = 0; i < 6; i++) {
+      for (i = 0; i < data.results.length; i++) {
         var movieName = $("<h2>");
         var movieDate = $("<h3>");
         var movieSynopsis = $("<p>");
@@ -307,6 +311,7 @@ function getGenreYearData(searchedgenre, searchedyear) {
 
         //dynamically create the card/panel to hold results
         var movieInfo = $("<div>").addClass("w3-panel w3-black w3-border")
+        movieInfo.val(i);
         var posterColumn = $("<div>").addClass("w3-col l4 w3-center")
         var infoColumn = $("<div>").addClass("w3-col l8")
         var posterCard = $("<div>").addClass("w3-card w3-white w3-padding w3-margin w3-center")
@@ -321,12 +326,14 @@ function getGenreYearData(searchedgenre, searchedyear) {
 
         $("#generatedResults").append(movieInfo)
       }
-      //click event to go to movie details page and store movie info in local storage
-      $(".w3-panel").click(function () {
-        let selected = this.value;
-        localStorage.setItem("movieClicked", JSON.stringify(data.results[selected]))
-        window.location.href = "movie-detail.html";
-      });
+        //click event to go to movie details page and store movie info in local storage
+        $(".w3-panel").click(function () {
+          let selected = this.value;
+          console.log(selected);
+          localStorage.setItem("movieClicked", JSON.stringify(data.results[selected]))
+          window.location.href = "movie-detail.html";
+        });
+
     }
   }
 
