@@ -1,6 +1,33 @@
 
 $(document).ready(function(){
+//Create intro dynamically and remove entire div and reveal actual homepage once start button is clicked
+  $("#myResults").addClass("hidden")
+  $("#searchForm").addClass("hidden")
+  $(".genreYearBtn").addClass("hidden")
 
+  var introSection = $("<div>").addClass("w3-card w3-padding-large w3-center w3-white w3-margin")
+  var introHeading = $("<h1>").text("Hello and Welcome!")
+  var intro = $("<p>").addClass("introPg")
+  intro.text("Cinefile is the perfect place to find the movies you love, discover new ones, and create your own personal watchlist! We provide 4 ways to search for the movies you want: if you know which movie you’re looking for, simply use the movie search feature. If you’re looking to discover new movies, you can search either by actor or by genre, with the added option to narrow the the genre search by year. Click on the movies in the results for more details and to add them to your own personal watch list! Ready to get started?")
+  var startApp = $("<button>").addClass("submitButton w3-button w3-xxlarge w3-black w3-hover-blue-gray w3-round-xxlarge w3-margin-bottom").text("Get Started!")
+
+introSection.append(introHeading, intro, startApp)
+$("#generatedResults").append(introSection)
+
+//Start button click event to remove intro div and remove 'hidden' class from homepage elements
+startApp.click(function (event) {
+  event.preventDefault(event)
+  $("#extendedAboutus").removeClass("hidden")
+  $(".genreYearBtn").removeClass("hidden")
+  $("#myResults").removeClass("hidden")
+  $("#searchForm").removeClass("hidden")
+  introSection.remove()
+  //call function to start page
+  startSearching()
+})
+})
+
+function startSearching() {
 //click event for 'search by movie' button
    $("#movieSubmit").click(function (event) {
        event.preventDefault(event)
@@ -41,8 +68,7 @@ $(document).ready(function(){
      $("#errorMessage").empty();
 
    })
-
-})
+  }
 
 //function to retrieve movie data from 'search by movie' button
 function getMovieData(searchedMovie) {
