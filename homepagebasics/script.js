@@ -56,7 +56,17 @@ function startSearching() {
     //get input values and declare as variables
     var searchedgenre = $("#genreDropDown").val()
     var searchedyear = $("#searchYear").val()
+
+    if(searchedyear.length<4 && searchedyear.length !== 0) {
+      $('#searchForm').trigger("reset");
+      $("#generatedResults").empty();
+      $("#myResults").addClass("hidden");
+      $("#errorMessage").text("Please put in a valid year to proceed!").addClass("errorMsg")
+      return
+    } 
+
     getGenreYearData(searchedgenre, searchedyear)
+
 
   })
   //click event for 'reset' button. Resets all possible displays to revert to empty screen
