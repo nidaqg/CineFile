@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Movie Detail</title>
+    <title>CineFile</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 
@@ -12,7 +12,8 @@
 
 <body>
     <header class="w3-container w3-black w3-center">
-        <h1>My Movie DataBase</h1>
+        <h1>CineFile</h1>
+        <h4>Find the movies you love, create the watch lists you need!</h4>
         <section class="w3-bar w3-black">
             <a href="./index.html" class="w3-bar-item w3-button">Home</a>
             <a href="./watchlist.html" class="w3-bar-item w3-button w3-hide-small">Watch List</a>
@@ -29,8 +30,12 @@
         <div class="w3-cell-row">
             <div class="w3-cell-bottom">
                 <img id="poster" class="w3-round w3-margin" alt="Movie Poster"></img>
-                <button class="w3-button w3-black w3-round-xlarge w3-margin" id="addToWatch">Add to Watchlist</button>
-                <button class="w3-button w3-black w3-round-xlarge w3-margin" id="markAsSeen">Mark as Seen</button>
+                <div>
+                    <button class="w3-button w3-black w3-round-xlarge w3-margin" id="addToWatch">Add to
+                        Watchlist</button>
+                    <button class="w3-button w3-black w3-round-xlarge w3-margin" id="markAsSeen">Mark as Seen</button>
+                </div>
+
             </div>
             <div class="w3-cell w3-white">
                 <h2 class="w3-padding" id="movie-title">
@@ -48,10 +53,10 @@
         <h3 class="w3-black ">
             Youtube Trailer
         </h3>
-        
+
         <div id="trailer-video">
-     </div>
-        </article>
+        </div>
+    </article>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="./assets/js/md-script.js"></script>
 </body>

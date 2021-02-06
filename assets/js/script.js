@@ -57,13 +57,13 @@ function startSearching() {
     var searchedgenre = $("#genreDropDown").val()
     var searchedyear = $("#searchYear").val()
 
-    if(searchedyear.length<4 && searchedyear.length !== 0) {
+    if (searchedyear.length < 4 && searchedyear.length !== 0) {
       $('#searchForm').trigger("reset");
       $("#generatedResults").empty();
       $("#myResults").addClass("hidden");
       $("#errorMessage").text("Please put in a valid year to proceed!").addClass("errorMsg")
       return
-    } 
+    }
 
     getGenreYearData(searchedgenre, searchedyear)
 
@@ -246,13 +246,13 @@ function getActorData(searchedActor) {
 
         $("#generatedResults").append(movieInfo)
       }
-        //click event to go to movie details page and store movie info in local storage
-        $(".w3-panel").click(function () {
-          let selected = this.value;
-          console.log(selected);
-          localStorage.setItem("movieClicked", JSON.stringify(data.results[selected]))
-          window.location.href = "movie-detail.html";
-        });
+      //click event to go to movie details page and store movie info in local storage
+      $(".w3-panel").click(function () {
+        let selected = this.value;
+        console.log(selected);
+        localStorage.setItem("movieClicked", JSON.stringify(data.results[selected]))
+        window.location.href = "movie-detail.html";
+      });
     }
   }
 }
@@ -336,13 +336,13 @@ function getGenreYearData(searchedgenre, searchedyear) {
 
         $("#generatedResults").append(movieInfo)
       }
-        //click event to go to movie details page and store movie info in local storage
-        $(".w3-panel").click(function () {
-          let selected = this.value;
-          console.log(selected);
-          localStorage.setItem("movieClicked", JSON.stringify(data.results[selected]))
-          window.location.href = "movie-detail.html";
-        });
+      //click event to go to movie details page and store movie info in local storage
+      $(".w3-panel").click(function () {
+        let selected = this.value;
+        console.log(selected);
+        localStorage.setItem("movieClicked", JSON.stringify(data.results[selected]))
+        window.location.href = "movie-detail.html";
+      });
 
     }
   }
