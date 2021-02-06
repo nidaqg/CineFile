@@ -12,24 +12,19 @@
     </head>
 
     <body>
-        <header class="w3-container w3-black w3-center">
-            <h1>My Movie DataBase</h1>
+        <header class="w3-container w3-black w3-center myHeader">
+           <h1>CineFile</h1>
+            <h4>Find the movies you love, create the watch lists you need!</h4>
             <section class="w3-bar w3-black">
                 <a href="index.html" class="w3-bar-item w3-button">Home</a>
-                <a href="#" class="w3-bar-item w3-button w3-hide-small">Watch List</a>
-                <a href="#" class="w3-bar-item w3-button w3-hide-small">Movies Seen</a>
-                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
-            </section>
-            <section id="demo" class="w3-bar-block w3-red w3-hide w3-hide-large w3-hide-medium">
                 <a href="#" class="w3-bar-item w3-button">Watch List</a>
-                <a href="#" class="w3-bar-item w3-button">Movies Seen</a>
-            </section>  
+            </section>
         </header>
 
         <main class="w3-row-padding w3-margin-top">
             <section class="w3-col m4">
                 <section class="w3-card w3-light-blue w3-padding-small">
-                    <form class="w3-container w3-margin-top">
+                    <form class="w3-container w3-margin-top" id="searchForm">
                         <label class="w3-text-black"><b>Search by Movie Name</b></label>
                         <input class="w3-input w3-border w3-light-grey w3-margin-bottom" id="searchMovie" type="text">
                         <section class="w3-bar w3-center w3-margin-bottom">
@@ -57,18 +52,26 @@
                       </select>
   
                       <label class="w3-text-black"><b>Search by Year(Optional)</b></label>
-                      <input class="w3-input w3-border w3-light-grey w3-margin-bottom" id="searchYear" type="text">
+                      <input class="w3-input w3-border w3-light-grey w3-margin-bottom" id="searchYear" type="text" maxlength="4">
                         
-                      </form>
+                   </form>
 
-                      <section class="w3-bar w3-center w3-margin-bottom">
+                      <section class="w3-bar w3-center w3-margin-bottom genreYearBtn">
                         <button class="w3-button w3-black w3-hover-blue-gray w3-round-xxlarge submitButton" id="genreSubmit">Submit</button>
                         <button class="w3-button w3-black w3-hover-blue-gray w3-round-xxlarge submitButton" id="resetButton">Reset</button>
                       </section>
 
-                      <section class="w3-card w3-padding-small w3-white w3-margin-bottom w3-margin-right w3-margin-left">
-                          <h2>Search History</h2>
-                          <p>leo vel orci porta non pulvinar neque laoreet suspendisse interdum consectetur libero id faucibus nisl tincidunt eget nullam non nisi est sit amet facilisis magna etiam tempor orci eu lobortis elementum nibh tellus molestie nunc non blandit massa enim nec dui nunc mattis enim ut tellus elementum sagittis vitae et leo duis ut diam quam nulla porttitor massa id neque</p>
+                      <section class="w3-card w3-padding w3-center w3-white w3-margin">
+                          <h2>About Us</h2>
+                          <p>
+                            CineFile provides the perfect place to find the movies you love, discover new ones, and create your own personal watchlist!
+                          </p>
+                          <p class="hidden" id="extendedAboutus">Above you will find 4 ways to search for the movies you want: if you know which movie you’re looking for, simply use the movie search feature. If you’re looking to discover new movies, you can search either by actor or by genre, with the added option to narrow the genre search by year. Click on the movies in the results for more details and to add them to your own personal watch list.
+                        </p>
+                          <p>
+                            This product uses the TMDb API but is not endorsed or certified by TMDb.
+                          </p>
+                          <img class="w3-margin-bottom" src="../assets/images/the-movie-database-logo.png" alt="TMDB-logo" width="100" height="100">
                       </section>
 
                 </section>
@@ -76,7 +79,9 @@
 
             <section class="w3-col m8">
                 <section class="w3-card w3-light-blue w3-padding-small">
-                    <h1 class="w3-center">Results</h1>
+                    <h1 class="w3-center" id= "myResults">Results</h1>
+                    <!--the following section will hold dynamically generated error messages when needed-->
+                    <p class= "w3-center w3-text-red" id="errorMessage"></p>
                     <!--the following section will hold the dynamically created movie results-->
                    <section id="generatedResults" class="w3-row"></section>
                </section>
