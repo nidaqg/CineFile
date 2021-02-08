@@ -9,9 +9,11 @@ $(document).ready(function () {
     movieYear = (data.release_date).substring(0, 4);
     movieRating= data.vote_average;
     posterUrl = "https://image.tmdb.org/t/p/w154" + posterPath;
-    videoSearch(movieName);
+    videoSearch(movieName, movieYear);
+
 
     //display elements dynamically
+   
     $("#poster").attr("src", posterUrl);
     $("#synopsis").text(summary);
     $("#movie-title").text(movieName);
@@ -78,19 +80,22 @@ $(document).ready(function () {
         $("#markAsSeen").prop("disabled", true);
     });
 
-    function videoSearch(movieName) {
+    function videoSearch(movieName, movieYear) {
 
     //youtube api variables
-    var YOUTUBE_API_KEY = "AIzaSyDWRD2C1LDceUrtIs4HrOwEiOCPBegSyUs";
+    // current api is dev API
+    // var YOUTUBE_API_KEY = "AIzaSyBL3buPIr2XS2gW56H4Vat2FYDAqRRLUJQ";
     var video = '';
-    var MovieTitle = movieName
+    var VideoTitle = movieName
+    var VideoYear = movieYear
     var maxResults = "1";
     var player1 = '<iframe width="560" height="315" src="https://www.youtube.com/embed/';
     var player2 = '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
-
-  
-        fetch("https://www.googleapis.com/youtube/v3/search?&key=" + YOUTUBE_API_KEY + "&type=video&maxResults=" + maxResults + "&q=" + MovieTitle + " trailer")
-
+    var tos = `<a href="https://www.youtube.com/t/terms">Youtube Terms of Service</a>
+    <a href="https://policies.google.com/privacy">Google Pricacy & Terms</a>`;
+ 
+        fetch("https://www.googleapis.com/youtube/v3/search?&key=" + YOUTUBE_API_KEY + "&type=video&maxResults=" + maxResults + "&q=" + VideoTitle + " trailer" + VideoYear)
+       
             .then(Response => Response.json())
             .then(data => {
                 var videoId = data['items'][0]['id']['videoId'];
@@ -98,8 +103,10 @@ $(document).ready(function () {
                 console.log(data);
                 video = player1 + videoId + player2;
                 $("#trailer-video").append(video);
+                $("#tos").append(tos);
             })
-
+        .catch(error => console.log(error));
+     
     }
 
 
