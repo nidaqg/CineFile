@@ -7,19 +7,20 @@ $(document).ready(function () {
     summary = data.overview;
     movieName = data.title;
     movieYear = (data.release_date).substring(0, 4);
-    movieRating= data.vote_average;
+    movieRating = data.vote_average;
     posterUrl = "https://image.tmdb.org/t/p/w154" + posterPath;
-    videoSearch(movieName, movieYear);
+    console.log(movieName);
+    videoSearch(movieName);
 
 
     //display elements dynamically
-   
+
     $("#poster").attr("src", posterUrl);
     $("#synopsis").text(summary);
     $("#movie-title").text(movieName);
     $("#year").text(movieYear);
-    $("#rating").text("Rating: "+movieRating+"/10");
-
+    $("#rating").text("Rating: " + movieRating + "/10");
+ 
     //checking to see if movie is already in watch list, then disable button so it cant be added twice
     if (localStorage.getItem("watchList") != null) {
         let watchListCheck = JSON.parse(localStorage.getItem("watchList"));
@@ -80,34 +81,43 @@ $(document).ready(function () {
         $("#markAsSeen").prop("disabled", true);
     });
 
-    function videoSearch(movieName, movieYear) {
+    function videoSearch(movieName) {
 
-    //youtube api variables
-    // current api is dev API
-    var YOUTUBE_API_KEY = "AIzaSyBL3buPIr2XS2gW56H4Vat2FYDAqRRLUJQ";
-    var video = '';
-    var VideoTitle = movieName
-    var VideoYear = movieYear
-    var maxResults = "1";
-    var player1 = '<iframe width="560" height="315" src="https://www.youtube.com/embed/';
-    var player2 = '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
-    var tos = `<a href="https://www.youtube.com/t/terms">Youtube Terms of Service</a>
-    <a href="https://policies.google.com/privacy">Google Pricacy & Terms</a>`;
- 
-        fetch("https://www.googleapis.com/youtube/v3/search?&key=" + YOUTUBE_API_KEY + "&type=video&maxResults=" + maxResults + "&q=" + VideoTitle + " trailer" + VideoYear)
-       
+        //imdb api key
+        var API_KEY = "k_xn7hh46n";
+        var video = '';
+        // get movie name from json data
+        var VideoTitle = movieName
+        // player options
+        var player1 = '<iframe width="560" height="315" src="'
+        var player2 = '" frameborder="0" autoplay; allowfullscreen></iframe'
+
+        // search IMDB api to get the video ID code from IMDB. 
+        fetch("https://imdb-api.com/API/Search/" + API_KEY + "/" + VideoTitle)
+
+
             .then(Response => Response.json())
             .then(data => {
-                var videoId = data['items'][0]['id']['videoId'];
-                console.log("video id: " + videoId);
-                console.log(data);
-                video = player1 + videoId + player2;
-                $("#trailer-video").append(video);
-                $("#tos").append(tos);
-            })
-        .catch(error => console.log(error));
-     
-    }
+                var ttID = data['results'][0]['id'];
+                console.log("id: " + ttID);
 
+
+                // pass imdb ID code to imdb-api trailer
+                fetch("https://imdb-api.com/API/YouTubeTrailer/" + API_KEY + "/" + ttID)
+                    .then(Response => Response.json())
+                    .then(data => {
+                        var youtubeLink = data['videoUrl']
+                        console.log("youtube link:" + youtubeLink);
+                        var youtubeLink = youtubeLink.replace("watch?v=", "embed/");
+                        console.log("replaced youtube:" + youtubeLink)
+                        video = player1 + youtubeLink + player2;
+                        console.log("video link: " + video);
+                        $("#trailer-video").append(video);
+                    })
+                    .catch(error => console.log(error));
+            })
+
+
+    }
 
 })
