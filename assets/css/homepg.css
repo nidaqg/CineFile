@@ -1,5 +1,6 @@
 .submitButton {
     outline: none;
+    background-color: rgb(176, 207, 235);
 }
 
 .hidden {
@@ -15,8 +16,6 @@
     font-size: 15px;
 }
 
-/*
-.myHeader {
-    background-image: url(../assets/images/header-background-img.jpg);
+.myColors {
+    background-color: rgb(16, 24, 99);
 }
-/*

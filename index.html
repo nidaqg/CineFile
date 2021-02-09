@@ -7,15 +7,16 @@
     <title>CineFile</title>
 
     <!--link css files-->
-    <!--<link rel="stylesheet" href="reset.css"> -->
+    <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="./assets/css/homepg.css">
 </head>
 
 <body>
-    <header class="w3-container w3-black w3-center myHeader">
-        <h1>CineFile</h1>
-        <h4>Find the movies you love, create the watch lists you need!</h4>
+    <header class="w3-black w3-center">
+        <section class="w3-display-container">
+            <img src="assets/images/cinefile-header.png" alt="headerimage" class="w3-image" style="width:100%"> 
+            </section>
         <section class="w3-bar w3-black">
             <a href="./index.html" class="w3-bar-item w3-button">Home</a>
             <a href="./watchlist.html" class="w3-bar-item w3-button">Watch List</a>
@@ -24,23 +25,23 @@
 
     <main class="w3-row-padding w3-margin-top">
         <section class="w3-col m4">
-            <section class="w3-card w3-light-blue w3-padding-small">
+            <section class="w3-card myColors w3-padding-small">
                 <form class="w3-container w3-margin-top" id="searchForm">
-                    <label class="w3-text-black"><b>Search by Movie Name</b></label>
+                    <label class="w3-text-white"><b>Search by Movie Name</b></label>
                     <input class="w3-input w3-border w3-light-grey w3-margin-bottom" id="searchMovie" type="text">
                     <section class="w3-bar w3-center w3-margin-bottom">
-                        <button class="w3-button w3-black w3-hover-blue-gray w3-round-xxlarge submitButton"
+                        <button class="w3-button w3-hover-black w3-round-xxlarge submitButton"
                             id="movieSubmit">Submit</button>
                     </section>
 
-                    <label class="w3-text-black" w3-center><b>Search by Actor Name</b></label>
+                    <label class="w3-text-white" w3-center><b>Search by Actor Name</b></label>
                     <input class="w3-input w3-border w3-light-grey w3-margin-bottom" id="searchActor" type="text">
                     <section class="w3-bar w3-center w3-margin-bottom">
-                        <button class="w3-button w3-black w3-hover-blue-gray w3-round-xxlarge submitButton"
+                        <button class="w3-button w3-hover-black w3-round-xxlarge submitButton"
                             id="actorSubmit">Submit</button>
                     </section>
 
-                    <label class="w3-text-black"><b>Search by Genre and Year</b></label>
+                    <label class="w3-text-white"><b>Search by Genre and Year</b></label>
                     <select class="w3-select w3-margin-bottom" name="option" id="genreDropDown">
                         <option value="" disabled selected>Choose Genre</option>
                         <option value="28">Action</option>
@@ -54,16 +55,16 @@
                         <option value="99">Documentary</option>
                     </select>
 
-                    <label class="w3-text-black"><b>Search by Year(Optional)</b></label>
+                    <label class="w3-text-white"><b>Search by Year(Optional)</b></label>
                     <input class="w3-input w3-border w3-light-grey w3-margin-bottom" id="searchYear" type="text"
                         maxlength="4">
 
                 </form>
 
                 <section class="w3-bar w3-center w3-margin-bottom genreYearBtn">
-                    <button class="w3-button w3-black w3-hover-blue-gray w3-round-xxlarge submitButton"
+                    <button class="w3-button w3-hover-black w3-round-xxlarge submitButton"
                         id="genreSubmit">Submit</button>
-                    <button class="w3-button w3-black w3-hover-blue-gray w3-round-xxlarge submitButton"
+                    <button class="w3-button w3-hover-black w3-round-xxlarge submitButton"
                         id="resetButton">Reset</button>
                 </section>
 
@@ -90,8 +91,8 @@
         </section>
 
         <section class="w3-col m8">
-            <section class="w3-card w3-light-blue w3-padding-small">
-                <h1 class="w3-center" id="myResults">Results</h1>
+            <section class="w3-card myColors w3-padding-small">
+                <h1 class="w3-center w3-text-white" id="myResults">Results</h1>
                 <!--the following section will hold dynamically generated error messages when needed-->
                 <p class="w3-center w3-text-red" id="errorMessage"></p>
                 <!--the following section will hold the dynamically created movie results-->

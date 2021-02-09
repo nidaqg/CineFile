@@ -6,14 +6,16 @@
         <title>CineFile</title>
 
         <!--link css files-->
-        <!--<link rel="stylesheet" href="reset.css"> -->
+        <link rel="stylesheet" href="reset.css">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="./assets/css/watchlist.css">
     </head>
 
     <body>
-        <header class="w3-container w3-black w3-center myHeader">
-           <h1>CineFile</h1>
-            <h4>Find the movies you love, create the watch lists you need!</h4>
+        <header class="w3-black w3-center myHeader">
+            <section class="w3-display-container">
+                <img src="assets/images/cinefile-header.png" alt="headerimage" class="w3-image" style="width:100%"> 
+                </section>    
             <section class="w3-bar w3-black">
                 <a href="./index.html" class="w3-bar-item w3-button">Home</a>
                 <a href="./watchlist.html" class="w3-bar-item w3-button">Watch List</a>
@@ -23,14 +25,14 @@
         <main class="w3-row-padding w3-margin-top">
             <section class="w3-col m4">
                 <!--section to hold dynamically created list of seen movies-->
-             <section class="w3-card w3-light-blue w3-padding" id="moviesSeenResults">
-                 <h1 class="w3-center">Movies Seen</h1>
+             <section class="w3-card myColors w3-padding" id="moviesSeenResults">
+                 <h1 class="w3-center w3-text-white">Movies Seen</h1>
              </section>
             </section>
             <section class="w3-col m8">
                 <!--section to hold dynamically created watchlist-->
-                <section class="w3-card w3-light-blue w3-padding" id="watchListResults">
-                    <h1 class="w3-center">Watch List</h1>
+                <section class="w3-card myColors w3-padding" id="watchListResults">
+                    <h1 class="w3-center w3-text-white">Watch List</h1>
                 </section>
 
             </section>
