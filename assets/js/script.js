@@ -119,7 +119,7 @@ function getMovieData(searchedMovie) {
         var movieRating = $("<p>");
 
         movieName.text(data.results[i].title)
-        movieDate.text((data.results[i].release_date).substring(0, 4))
+        movieDate.text("Release year: "+(data.results[i].release_date).substring(0, 4))
         movieSynopsis.text(data.results[i].overview);
 
         posterId = data.results[i].poster_path

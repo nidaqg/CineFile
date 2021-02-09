@@ -18,7 +18,7 @@ $(document).ready(function () {
     $("#poster").attr("src", posterUrl);
     $("#synopsis").text(summary);
     $("#movie-title").text(movieName);
-    $("#year").text(movieYear);
+    $("#year").text("Release year: "+movieYear);
     $("#rating").text("Rating: " + movieRating + "/10");
  
     //checking to see if movie is already in watch list, then disable button so it cant be added twice
