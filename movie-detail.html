@@ -5,28 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CineFile</title>
+    <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
+    <link rel="stylesheet" href="./assets/css/md-style.css">
 
 </head>
 
 <body>
-    <header class="w3-container w3-black w3-center">
-        <h1>CineFile</h1>
-        <h4>Find the movies you love, create the watch lists you need!</h4>
+    <header class="w3-black w3-center">
+        <section class="w3-display-container">
+            <img src="assets/images/cinefile-header.png" alt="headerimage" class="w3-image" style="width:100%"> 
+            </section>
         <section class="w3-bar w3-black">
             <a href="./index.html" class="w3-bar-item w3-button">Home</a>
-            <a href="./watchlist.html" class="w3-bar-item w3-button w3-hide-small">Watch List</a>
-            <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
-                onclick="myFunction()">&#9776;</a>
-        </section>
-        <section id="demo" class="w3-bar-block w3-red w3-hide w3-hide-large w3-hide-medium">
-            <a href="#" class="w3-bar-item w3-button">Watch List</a>
-            <a href="#" class="w3-bar-item w3-button">Movies Seen</a>
+            <a href="./watchlist.html" class="w3-bar-item w3-button">Watch List</a>
         </section>
     </header>
 
-    <main class="w3-container w3-light-blue">
+    <main class="w3-container">
         <div class="w3-cell-row">
             <div class="w3-cell-bottom">
                 <img id="poster" class="w3-round w3-margin" alt="Movie Poster"></img>
@@ -49,7 +45,7 @@
             </div>
         </div>
     </main>
-    <article class="w3-container w3-light-blue w3-center">
+    <article class="w3-container myColors w3-center">
         <h3 class="w3-black">
             Youtube Trailer
         </h3>
