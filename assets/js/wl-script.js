@@ -35,8 +35,8 @@ function populateWatch() {
             var infoColumn = $("<div>").addClass("w3-col l8")
             var posterCard = $("<div>").addClass("w3-card w3-white w3-padding w3-margin w3-center")
             var infoCard = $("<div>").addClass("w3-card w3-white w3-padding-small w3-margin")
-            var removeBtn = $("<button>").addClass("w3-button w3-red w3-round-xlarge remove").text("Remove from watchlist");
-            var markSeenBtn = $("<button>").addClass("w3-button w3-green w3-round-xlarge seen").text("Mark as seen");
+            var removeBtn = $("<button>").addClass("w3-button w3-red w3-round-xlarge remove w3-margin-bottom").text("Remove from watchlist");
+            var markSeenBtn = $("<button>").addClass("w3-button w3-green w3-round-xlarge seen w3-margin-bottom").text("Mark as seen");
             markSeenBtn.val(i);
             removeBtn.val(i);
 
@@ -55,7 +55,7 @@ function populateWatch() {
     //fill results with message if nothing in watchlist
     else {
         var noResults = $("<h3>").addClass("w3-text-white w3-center");
-        noResults.text("You have nothing in your watchlist");
+        noResults.text("You have nothing in your watchlist!");
         $("#watchListResults").append(noResults);
     }
     //click function for mark as seen button
@@ -108,11 +108,14 @@ function populateSeen() {
         for (i = 0; i < existingSeen.length; i++) {
             console.log("run "+i)
             //dynamically create the card/panel to hold results
+
+            let seenCard = $("<div>").addClass("w3-card w3-white w3-padding w3-margin w3-center")
             let movieName = existingSeen[i].title;
             let movieYear = (existingSeen[i].release_date).substring(0, 4);
-            let movieNameDiv = $("<h4>").addClass("w3-text-white");
+            let movieNameDiv = $("<h4>").addClass("w3-text-black");
             movieNameDiv.text(movieName + " (" + movieYear + ")");
-            $("#moviesSeenResults").append(movieNameDiv);
+            seenCard.append(movieNameDiv)
+            $("#moviesSeenResults").append(seenCard);
         }
     }
 }
