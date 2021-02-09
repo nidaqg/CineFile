@@ -22,11 +22,11 @@ function populateWatch() {
             var movieRatingDiv = $("<p>");
 
             movieNameDiv.text(movieName)
-            movieDateDiv.text(movieYear)
+            movieDateDiv.text("Release year: "+movieYear)
             movieSynopsisDiv.text(summary);
             moviePosterDiv.attr("src", posterUrl)
 
-            movieRatingDiv.text("Rating: " + movieRating)
+            movieRatingDiv.text("Rating: " + movieRating+"/10")
 
             //dynamically create the card/panel to hold results
             var movieInfo = $("<div>").addClass("w3-panel w3-black w3-border")

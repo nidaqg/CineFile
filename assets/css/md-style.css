@@ -4,9 +4,15 @@
     margin-top:10px;
 }
 button{
-    margin-top:5px
+    margin:5px;
 }
 
 .myColors {
     background-color: rgb(16, 24, 99);
+}
+
+.details{
+    border-style:solid;
+    border-width: 15px;
+    border-color:black;
 }
