@@ -207,7 +207,7 @@ function getActorData(searchedActor) {
     function displayActor(data) {
       console.log(data)
 
-      for (i = 0; i < data.results.length; i++) {
+      for (i = 0; i < data.cast.length; i++) {
         var movieName = $("<h2>");
         var movieDate = $("<h3>");
         var movieSynopsis = $("<p>");
