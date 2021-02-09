@@ -84,7 +84,7 @@ $(document).ready(function () {
 
     //youtube api variables
     // current api is dev API
-    // var YOUTUBE_API_KEY = "AIzaSyBL3buPIr2XS2gW56H4Vat2FYDAqRRLUJQ";
+    var YOUTUBE_API_KEY = "AIzaSyBL3buPIr2XS2gW56H4Vat2FYDAqRRLUJQ";
     var video = '';
     var VideoTitle = movieName
     var VideoYear = movieYear
