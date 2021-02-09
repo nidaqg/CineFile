@@ -40,6 +40,7 @@ https://github.com/burtk33/CineFile
 
 The deployed project can be found at:
 
+https://burtk33.github.io/CineFile/ 
 
 
 
