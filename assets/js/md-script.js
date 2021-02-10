@@ -6,7 +6,12 @@ $(document).ready(function () {
     posterPath = data.poster_path;
     summary = data.overview;
     movieName = data.title;
-    movieYear = (data.release_date).substring(0, 4);
+    if (data.release_date != undefined) {
+        movieYear = (data.release_date).substring(0, 4);
+    }
+    else {
+        movieYear = "No release date";
+    }
     movieRating = data.vote_average;
     posterUrl = "https://image.tmdb.org/t/p/w154" + posterPath;
     console.log(movieName);
@@ -18,9 +23,9 @@ $(document).ready(function () {
     $("#poster").attr("src", posterUrl);
     $("#synopsis").text(summary);
     $("#movie-title").text(movieName);
-    $("#year").text("Release year: "+movieYear);
+    $("#year").text("Release year: " + movieYear);
     $("#rating").text("Rating: " + movieRating + "/10");
- 
+
     //checking to see if movie is already in watch list, then disable button so it cant be added twice
     if (localStorage.getItem("watchList") != null) {
         let watchListCheck = JSON.parse(localStorage.getItem("watchList"));

@@ -119,7 +119,13 @@ function getMovieData(searchedMovie) {
         var movieRating = $("<p>");
 
         movieName.text(data.results[i].title)
-        movieDate.text("Release year: "+(data.results[i].release_date).substring(0, 4))
+        if(data.results[i].release_date!=undefined)
+        {
+          movieDate.text((data.results[i].release_date).substring(0, 4))
+        }
+        else{
+          movieDate.text("No Release Date");
+        }
         movieSynopsis.text(data.results[i].overview);
 
         posterId = data.results[i].poster_path
@@ -215,7 +221,14 @@ function getActorData(searchedActor) {
         var movieRating = $("<p>");
 
         movieName.text(data.cast[i].title)
-        movieDate.text((data.cast[i].release_date).substring(0, 4))
+        if(data.cast[i].release_date!=undefined)
+        {
+          movieDate.text((data.cast[i].release_date).substring(0, 4))
+        }
+        else{
+          movieDate.text("No Release Date");
+        }
+        
         movieSynopsis.text(data.cast[i].overview);
 
         posterId = data.cast[i].poster_path
@@ -244,7 +257,7 @@ function getActorData(searchedActor) {
       $(".w3-panel").click(function () {
         let selected = this.value;
         console.log(selected);
-        localStorage.setItem("movieClicked", JSON.stringify(data.results[selected]))
+        localStorage.setItem("movieClicked", JSON.stringify(data.cast[selected]))
         window.location.href = "movie-detail.html";
       });
     }
@@ -305,7 +318,13 @@ function getGenreYearData(searchedgenre, searchedyear) {
         var movieRating = $("<p>");
 
         movieName.text(data.results[i].title)
-        movieDate.text((data.results[i].release_date).substring(0, 4))
+        if(data.results[i].release_date!=undefined)
+        {
+          movieDate.text((data.results[i].release_date).substring(0, 4))
+        }
+        else{
+          movieDate.text("No Release Date");
+        }
         movieSynopsis.text(data.results[i].overview);
 
         posterId = data.results[i].poster_path

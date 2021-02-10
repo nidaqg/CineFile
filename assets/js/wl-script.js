@@ -5,13 +5,18 @@ populateSeen();
 
 //populate watch list dynamically
 function populateWatch() {
-    
+
     if (watchList != null) {
         for (i = 0; i < watchList.length; i++) {
             let posterPath = watchList[i].poster_path;
             let summary = watchList[i].overview;
             let movieName = watchList[i].title;
-            let movieYear = (watchList[i].release_date).substring(0, 4);
+            if (watchList[i].release_date != undefined) {
+                movieYear = (watchList[i].release_date).substring(0, 4);
+            }
+            else{
+                movieYear="No release date";
+            }
             let movieRating = watchList[i].vote_average;
             let posterUrl = "https://image.tmdb.org/t/p/w154" + posterPath;
 
@@ -22,11 +27,11 @@ function populateWatch() {
             var movieRatingDiv = $("<p>");
 
             movieNameDiv.text(movieName)
-            movieDateDiv.text("Release year: "+movieYear)
+            movieDateDiv.text("Release year: " + movieYear)
             movieSynopsisDiv.text(summary);
             moviePosterDiv.attr("src", posterUrl)
 
-            movieRatingDiv.text("Rating: " + movieRating+"/10")
+            movieRatingDiv.text("Rating: " + movieRating + "/10")
 
             //dynamically create the card/panel to hold results
             var movieInfo = $("<div>").addClass("w3-panel w3-black w3-border")
@@ -103,15 +108,19 @@ function populateWatch() {
 
 //populate movies seen list
 function populateSeen() {
-    let existingSeen= JSON.parse(localStorage.getItem("moviesSeen"));
+    let existingSeen = JSON.parse(localStorage.getItem("moviesSeen"));
     if (existingSeen != null) {
         for (i = 0; i < existingSeen.length; i++) {
-            console.log("run "+i)
             //dynamically create the card/panel to hold results
 
             let seenCard = $("<div>").addClass("w3-card w3-white w3-padding w3-margin w3-center")
             let movieName = existingSeen[i].title;
-            let movieYear = (existingSeen[i].release_date).substring(0, 4);
+            if (existingSeen[i].release_date != undefined) {
+                movieYear = (existingSeen[i].release_date).substring(0, 4);
+            }
+            else{
+                movieYear="No release date";
+            }
             let movieNameDiv = $("<h4>").addClass("w3-text-black");
             movieNameDiv.text(movieName + " (" + movieYear + ")");
             seenCard.append(movieNameDiv)
